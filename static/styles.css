@@ -1,0 +1,122 @@
+html{
+    font-family: 'Tilt Neon', cursive;
+}
+body{
+    background-image: url('background.jpg');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size:cover;
+    background-color:pink;
+    margin:0em
+}
+#first_header ul{
+    display:grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items:center;
+    background-color:rgba(148, 0, 211, .5);
+    list-style-type:none;
+}
+#first_header ul li{
+    color:aquamarine;
+}
+#first_header img{
+    width:40%;
+}
+#first_header ul li a{
+    text-decoration:none;
+    color:white;
+    margin-top:5em;
+    transition:0.5s
+}
+#first_header ul li a:hover{
+    color:aquamarine;
+    border-bottom: 1px solid aquamarine
+}
+#first_header h1{
+    text-align:center;
+}
+main{
+    margin: 2em;
+    display:grid;
+    grid-template-areas: 
+                        "title title title"
+                        "top-left top-center top-right"
+                        "bottom-left bottom-center bottom-right";
+}
+main h2{
+    grid-area:title;
+    text-align:center
+}
+main section{
+    border: 1px solid rgba(148, 0, 211, .5);
+    background-color:rgba(250, 248, 248, .5);
+    margin-bottom:1em;
+    margin-right:1em;
+    border-radius:50px;
+    text-align: center;
+} 
+main section img{
+    width:60%;
+}
+main section figure{
+    text-align:center
+}
+main section h4{
+    text-align:center
+}
+main #groceries{
+    grid-area:top-left;
+}
+main #healthcare{
+    grid-area:top-center;
+}
+main #restaurants{
+    grid-area:top-right;
+}
+main #beauty{
+    grid-area:bottom-left;
+}
+main #transport{
+    grid-area:bottom-center;
+}
+main #other{
+    grid-area:bottom-right;
+}
+footer{
+    text-align:center;
+    margin-top:auto
+}
+h2{
+    text-align:center
+}
+#registration_link, #login_link, #logout_link, #link_to_reset_all_tables, #back_to_home_link{
+    float:right;
+    margin-right:3em
+}
+form{
+    text-align:center
+}
+table{
+    margin:0 auto;
+    width:70%;
+    border-collapse:collapse;
+    background-color:rgba(250, 248, 248, .5)
+}
+th, td{
+    border:1px solid rgba(148, 0, 211, .5)
+}
+th{
+    background-color:rgba(247, 58, 244, 0.4)
+}
+#welcome_message{
+    text-align:center;
+    font-weight: bold;
+}
+#current_month{
+    text-align:center;
+    font-weight:bold
+}
+#last_month{
+    text-align:center;
+    font-weight:bold
+}

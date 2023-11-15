@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block main_content %}
+    <h2>Add to {{this_month}} expenses</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.category.label }}
+        {{ form.category() }}
+        {% for error in form.category.errors %}
+            {{ error }}
+        {% endfor %}
+        <br/>
+        {{ form.date.label }}
+        {{ form.date() }}
+        {% for error in form.date.errors %}
+            {{error}}
+        {% endfor %}
+        <br/>
+        {{ form.amount.label }}
+        {{ form.amount() }}
+        {% for error in form.amount.errors %}
+            {{error}}
+        {% endfor %}
+        <br/>
+        {{ form.add() }}
+    </form>
+{% endblock %}

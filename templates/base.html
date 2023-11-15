@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Budgeting Diary</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header id="first_header">
+        <h1>My Budgeting Diary</h1>
+        <ul>
+            <li><img src="{{ url_for('static', filename='bunny.png') }}" /></li>
+            <li>
+                <h2>Your Expenses Archive</h2>
+            </li>
+            <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+        </ul>
+    </header>
+    {% block main_content %}
+    {% endblock %}
+</body>
+
+</html>

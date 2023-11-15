@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<header>
+    {% if g.user %}
+        <h2 id="welcome_message">Welcome, {{g.user}}!</h2>
+        <a id="logout_link" href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <a id="login_link" href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</header>
+<main>
+    <h2>Categories:</h2>
+    <section id="groceries">
+        <h4>Groceries</h4>
+        <figure>
+            <img src="{{ url_for('static', filename='groceries.jpg') }}" alt="Two bags of groceries." />
+        </figure>
+        <a href="{{ url_for('add') }}">Add</a>
+    </section>
+    <section id="healthcare">
+        <h4>Healthcare</h4>
+        <figure>
+            <img src="{{ url_for('static', filename='healthcare.jpg') }}" alt="A doctor." />
+        </figure>
+        <a href="{{ url_for('add') }}">Add</a>
+    </section>
+    <section id="restaurants">
+        <h4>Restaurant</h4>
+        <figure>
+            <img src="{{ url_for('static', filename='restaurant.jpg') }}" alt="A nice restaurant." />
+        </figure>
+        <a href="{{ url_for('add') }}">Add</a>
+    </section>
+    <section id="beauty">
+        <h4>Beauty</h4>
+        <figure>
+            <img src="{{ url_for('static', filename='beauty.jpg') }}" alt="A hair salon." />
+        </figure>
+        <a href="{{ url_for('add') }}">Add</a>
+    </section>
+    <section id="transport">
+        <h4>Transport</h4>
+        <figure>
+            <img src="{{ url_for('static', filename='transport.jpg') }}" alt="A bus." />
+        </figure>
+        <a href="{{ url_for('add') }}">Add</a>
+    </section>
+    <section id="other">
+        <h4>Other</h4>
+        <figure>
+            <img src="{{ url_for('static', filename='other.jpg') }}" alt="Lots of books." />
+        </figure>
+        <a href="{{ url_for('add') }}">Add</a>
+    </section>
+</main>
+<footer>
+    <p><small>&copy;Your Bank Archive</small></p> 
+</footer>
+
+{% endblock %}

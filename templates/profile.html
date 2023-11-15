@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+{% block main_content %}
+   <a id="back_to_home_link" href="{{ url_for('index') }}">Back to Home page</a>
+   <br/>
+   <br/>
+   <p id="current_month">{{ current_month }}</p>
+   <br/>
+    <table>
+        <tr>
+            <th colspan="4">Your Groceries Expenses</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th colspan="2">Amount (in Euros)</th>
+        </tr>
+        {% if g_expense %}
+            {% for transaction in g_expense %}
+                <tr>
+                    <td>{{ transaction["transaction_id"] }}</td>
+                    <td>{{ transaction["date"] }}</td>
+                    <td>{{ transaction["amount"] }}</td>
+                    <td><a href="{{ url_for('remove_g', transaction_id=transaction['transaction_id']) }}">Remove</a></td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="2">Total</th>
+                <td colspan="2">{{ total_groceries_expenses }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="{{ url_for('g_reset') }}">Reset</a></td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="change_of_month_g">Transfer to last month expenses</a><br/>
+                Click on this link if it's the last day of the month, so you can transfer your expenses from last month to the appropriate table, where you can compare them with the current month.</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">You have no expenses in this category yet!</td>
+            </tr>
+        {% endif %}   
+    </table>
+
+    <br/>
+    <table>
+        <tr>
+            <th colspan="4">Your Healthcare Expenses</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th colspan="2">Amount (in Euros)</th>
+        </tr>
+        {% if h_expense %}
+        {% set total_expenses = 0 %}
+        {% for transaction in h_expense %}
+        {% set total_expenses = total_expenses + transaction["amount"] %}
+            <tr>
+                <td>{{ transaction["transaction_id"] }}</td>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+                <td><a href="{{ url_for('remove_h', transaction_id=transaction['transaction_id']) }}">Remove</a></td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <th colspan="2">Total</th>
+                <td colspan="2">{{ total_healthcare_expenses }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="{{ url_for('h_reset') }}">Reset</a></td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="change_of_month_h">Transfer to last month expenses</a><br/>
+                Click on this link if it's the last day of the month, so you can transfer your expenses from last month to the appropriate table, where you can compare them with the current month.</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">You have no expenses in this category yet!</td>
+            </tr> 
+        {% endif %}   
+    </table>
+
+    <br/>
+    <table>
+        <tr>
+            <th colspan="4">Your Restaurant Expenses</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th colspan="2">Amount (in Euros)</th>
+        </tr>
+        {% if r_expense %}
+        {% for transaction in r_expense %}
+            <tr>
+                <td>{{ transaction["transaction_id"] }}</td>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+                <td><a href="{{ url_for('remove_r', transaction_id=transaction['transaction_id']) }}">Remove</a></td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <th colspan="2">Total</th>
+                <td colspan="2">{{ total_restaurants_expenses }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="{{ url_for('r_reset') }}">Reset</a></td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="change_of_month_r">Transfer to last month expenses</a><br/>
+                Click on this link if it's the last day of the month, so you can transfer your expenses from last month to the appropriate table, where you can compare them with the current month.</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">You have no expenses in this category yet!</td>
+            </tr>
+        {% endif %}   
+    </table>
+
+    <br/>
+    <table>
+        <tr>
+            <th colspan="4">Your Beauty Expenses</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th colspan="2">Amount (in Euros)</th>
+        </tr>
+        {% if b_expense %}
+        {% for transaction in b_expense %}
+            <tr>
+                <td>{{ transaction["transaction_id"] }}</td>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+                <td><a href="{{ url_for('remove_b', transaction_id=transaction['transaction_id']) }}">Remove</a></td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th colspan="2">Total</th>
+                <td colspan="2">{{ total_beauty_expenses }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="{{ url_for('b_reset') }}">Reset</a></td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="change_of_month_b">Transfer to last month expenses</a><br/>
+                Click on this link if it's the last day of the month, so you can transfer your expenses from last month to the appropriate table, where you can compare them with the current month.</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">You have no expenses in this category yet!</td>
+            </tr>
+        {% endif %}   
+    </table>
+
+    <br/>
+    <table>
+        <tr>
+            <th colspan="4">Your Transport Expenses</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th colspan="2">Amount (in Euros)</th>
+        </tr>
+        {% if t_expense %}
+        {% for transaction in t_expense %}
+            <tr>
+                <td>{{ transaction["transaction_id"] }}</td>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+                <td><a href="{{ url_for('remove_t', transaction_id=transaction['transaction_id']) }}">Remove</a></td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th colspan="2">Total</th>
+                <td colspan="2">{{ total_transport_expenses }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="{{ url_for('t_reset') }}">Reset</a></td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="change_of_month_t">Transfer to last month expenses</a><br/>
+                Click on this link if it's the last day of the month, so you can transfer your expenses from last month to the appropriate table, where you can compare them with the current month.</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">You have no expenses in this category yet!</td>
+            </tr>
+        {% endif %}   
+    </table>
+
+    <br/>
+    <table>
+        <tr>
+            <th colspan="4">Your Other Expenses</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th colspan="2">Amount (in Euros)</th>
+        </tr>
+        {% if o_expense %}
+        {% for transaction in o_expense %}
+            <tr>
+                <td>{{ transaction["transaction_id"] }}</td>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+                <td><a href="{{ url_for('remove_o', transaction_id=transaction['transaction_id']) }}">Remove</a></td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th colspan="2">Total</th>
+                <td colspan="2">{{ total_other_expenses }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="{{ url_for('o_reset') }}">Reset</a></td>
+            </tr>
+            <tr>
+                <td colspan="4"><a href="change_of_month_o">Transfer to last month expenses</a><br/>
+                Click on this link if it's the last day of the month, so you can transfer your expenses from last month to the appropriate table, where you can compare them with the current month.</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">You have no expenses in this category yet!</td>
+            </tr>
+        {% endif %}   
+    </table>
+    <br/>
+    <p id="last_month">Last Month Expenses</p>
+    <table>     
+        <tr>
+            <th colspan="2">Your Groceries Expenses from last month</th>
+        </tr>
+        {% if last_month_g_expense %}
+        <tr>
+            <th>Date</th>
+            <th>Amount (in Euros)</th>
+        </tr>
+        {% for transaction in last_month_g_expense %}
+            <tr>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th>Total</th>
+                <td>{{ total_g_expenses_last_month }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">You had no expenses in this category last month!</td>
+            </tr>
+        {% endif %}   
+    </table>
+    <br/>
+    <table>     
+        <tr>
+            <th colspan="2">Your Healthcare Expenses from last month</th>
+        </tr>
+        {% if last_month_h_expense %}
+        <tr>
+            <th>Date</th>
+            <th>Amount (in Euros)</th>
+        </tr>
+        {% for transaction in last_month_h_expense %}
+            <tr>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th>Total</th>
+                <td>{{ total_h_expenses_last_month }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">You had no expenses in this category last month!</td>
+            </tr>
+        {% endif %}   
+    </table>
+    <br/>
+    <table>     
+        <tr>
+            <th colspan="2">Your Restaurants Expenses from last month</th>
+        </tr>
+        {% if last_month_r_expense %}
+        <tr>
+            <th>Date</th>
+            <th>Amount (in Euros)</th>
+        </tr>
+        {% for transaction in last_month_r_expense %}
+            <tr>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th>Total</th>
+                <td>{{ total_r_expenses_last_month }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">You had no expenses in this category last month!</td>
+            </tr>
+        {% endif %}   
+    </table>
+    <br/>
+    <table>     
+        <tr>
+            <th colspan="2">Your Beauty Expenses from last month</th>
+        </tr>
+        {% if last_month_b_expense %}
+        <tr>
+            <th>Date</th>
+            <th>Amount (in Euros)</th>
+        </tr>
+        {% for transaction in last_month_b_expense %}
+            <tr>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th>Total</th>
+                <td>{{ total_b_expenses_last_month }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">You had no expenses in this category last month!</td>
+            </tr>
+        {% endif %}   
+    </table>
+    <br/>
+    <table>     
+        <tr>
+            <th colspan="2">Your Transport Expenses from last month</th>
+        </tr>
+        {% if last_month_t_expense %}
+        <tr>
+            <th>Date</th>
+            <th>Amount (in Euros)</th>
+        </tr>
+        {% for transaction in last_month_t_expense %}
+            <tr>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th>Total</th>
+                <td>{{ total_other_expenses_last_month }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">You had no expenses in this category last month!</td>
+            </tr>
+        {% endif %}   
+    </table>
+    <br/>
+    <table>     
+        <tr>
+            <th colspan="2">Your Other Expenses from last month</th>
+        </tr>
+        {% if last_month_o_expense %}
+        <tr>
+            <th>Date</th>
+            <th>Amount (in Euros)</th>
+        </tr>
+        {% for transaction in last_month_o_expense %}
+            <tr>
+                <td>{{ transaction["date"] }}</td>
+                <td>{{ transaction["amount"] }}</td>
+            </tr>
+        {% endfor %} 
+            <tr>
+                <th>Total</th>
+                <td>{{ total_o_expenses_last_month }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">You had no expenses in this category last month!</td>
+            </tr>
+        {% endif %}   
+    </table>
+
+    <br/>
+    <br/>
+    <a id="link_to_reset_all_tables" href="{{ url_for('reset_all') }}">Reset all</a>
+    <br/>
+    <br/>
+    <a id="logout_link" href="{{ url_for('logout') }}">Logout</a>
+    <br/>
+    <br/>
+{% endblock %}
